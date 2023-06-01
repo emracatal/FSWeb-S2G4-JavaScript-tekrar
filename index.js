@@ -16,10 +16,9 @@ var sayilar = [45,856,12.5,63,0.02,154,2,54,78,61.7,654,26,12.5,63,969,152,32,31
 function KareninAlani(kenaruzunlugu){
 	return kenaruzunlugu*kenaruzunlugu;
 }
+console.log(KareninAlani(10));
 
 /* (Oto test yok) Yukarıdaki KareninAlani fonksiyonunu kenar uzunluğu = 10 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
-
-
 
 /* 	GÖREV 1:  
 		- CemberinCevresi fonksiyonunu kullanarak aşağıdaki yönergeleri uygulayın:
@@ -29,14 +28,12 @@ function KareninAlani(kenaruzunlugu){
 			4. Hesaplanan çemberin çevresi döndürülecektir.
 		*/
 
-function CemberinCevresi(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinCevresi(yaricap){
+	return 2 * pi * yaricap
 }
-
+console.log(CemberinCevresi(5));
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
-
-
 
 
 /* 	GÖREV 2:  
@@ -47,14 +44,12 @@ function CemberinCevresi(/* kodlar buraya */){
 			4. Hesaplanan çemberin alanı döndürülecektir.
 		*/
 		
-function CemberinAlani(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinAlani(yaricapi){
+	return pi * Math.pow(yaricapi,2);
 }
-
+console.log(CemberinAlani(15));
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
-
-
 
 /* 	GÖREV 3:
 		- Sayfanın en üstünde global değişken olarak tanımlanmış bir sayilar dizisi bulunmaktadır. Bu dizi içinde 0 ile 1000 arasında rasgele oluşturulmuş tam sayılar ve ondalıklı sayılar bulunmaktadır. Bu diziyi kullanarak aşağıdakileri uygulayın:
@@ -68,41 +63,88 @@ function CemberinAlani(/* kodlar buraya */){
 			💡 İPUCU: Tekrar edilen sayıları ve kaç kere tekrar edildiğini kaydetmek için bir nesne tanımlamalısınız, bu görevi yapabilmek için en az 2 kere döngü yazmalısınız. Birinci döngüde hangi sayının kaç kere tekrar edildiğini tespit edip, 2. döngüde stringi oluşturup verilen diziye aktarmalısınız.
 	*/
 	
-	
 /*  (oto test yok) sayilar dizisi içinde kaç adet sayı olduğunu konsola yazdırın */
-
-
 
 	var ucetambolunenler, enkucuk, enbuyuk, ucebolunenlerintoplami, besyuzdenkucuksayilar, siralisayilar, tekraredensayilar;
 	
+		enkucuk = sayilar[0]
+        enbuyuk = sayilar[0];
+
+        for(var i=0; i<sayilar.length ; i++){
+            if(enbuyuk < sayilar[i])
+			enbuyuk = sayilar[i]; 
+
+            if(enkucuk > sayilar[i])
+			enkucuk = sayilar[i]; 
+        }
+
+	console.log("en küçük",enkucuk);
+	console.log("en büyük",enbuyuk);
+	
 	//3a çözümü
+	
+	ucetambolunenler = [];
+	sayilar.forEach((sayi) => {
+		if (sayi % 3 === 0){
+		ucetambolunenler.push(sayi);
+		}
+	})
+	console.log("üçe tam bölünenler",ucetambolunenler);
 
-	/* kodlar buraya */
+	// 3b çözümü:		
 	
-	
-	
-	// 3b çözümü:
+	ucebolunenlerintoplami = ucetambolunenler
+		.reduce((toplam, sayi) => {
+		toplam += sayi;
+		return toplam
+		},0)
+	console.log("üçe tam bölünenlerin toplamı",ucebolunenlerintoplami);
 
-	/* kodlar buraya */
-		
-		
-		
 	//3c çözümü:
 	
-	/* kodlar buraya */
+	besyuzdenkucuksayilar = sayilar
+		.filter((sayi)=>{ return sayi<500;
+		})
+	console.log("beşyüzden küçük sayılar",besyuzdenkucuksayilar);
 
-	
-	
+	/*FOR EACH İLE ÇÖZÜMÜM
+	besyuzdenkucuksayilar = [];
+	sayilar.forEach((sayi)=>{
+		if(sayi<500) {
+		besyuzdenkucuksayilar.push(sayi);
+		}
+	})
+	console.log("beşyüzden küçük sayılar",besyuzdenkucuksayilar);
+	*/
+
 	//3d çözümü
+	siralisayilar = besyuzdenkucuksayilar.sort((a,b)=>{
+		return a-b;
+	})
+	console.log("siralisayilar", siralisayilar)
 	
-	/* kodlar buraya */
 
 
 
 	//3e çözümü
+	/*sayilarTekrarObj = sayilar.reduce((obj,sayi) => {
+		return {
+			...obj,
+			[sayi]: obj[sayi] ? obj[sayi] + 1 : 1, 
+		};
+	},{});
 
-	/* kodlar buraya */
+	tekraredensayilar = [];
 	
+	for(let key in sayilarTekrarObj) {
+		if(sayilarTekrarObj[key]>1){
+			tekraredensayilar.push(
+				`${key} sayısı ${sayilarTekrarObj[key]} kere tekrar edilmiştir`
+			)
+		}
+	}
+	console.log("tekraredensayilar",tekraredensayilar)
+	*/
 	
 	//3f çözümü
 	
